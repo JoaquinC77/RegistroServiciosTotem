@@ -201,7 +201,7 @@ public class RegistrosServicios extends javax.swing.JFrame {
                     
                     conn.insertRegistroServicio(pasajero.getId(), contrato.getId(), String.valueOf(hiloCambioSer.getIdServicio()));
 
-                    new ImpresoraWS().printVoucher(servicio, pasajero.getNombre(), pasajero.getRut(), fecha + " " + hora);
+                    new ImpresoraWS().printVoucher(servicio, pasajero.getNombre(),pasajero.getApellidoP(), pasajero.getRut(), fecha + " " + hora);
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "ERROR DE REGISTRO", "ERROR", JOptionPane.ERROR_MESSAGE);

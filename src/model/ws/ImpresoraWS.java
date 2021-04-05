@@ -19,9 +19,9 @@ public class ImpresoraWS {
         this.urlWS = "http://localhost:8080";
     }
     
-    public boolean printVoucher(String servicio, String nombrePasajero, String rutPasajero, String fecha) throws MalformedURLException, IOException{
+    public boolean printVoucher(String servicio, String nombrePasajero,String apellidoP, String rutPasajero, String fecha) throws MalformedURLException, IOException{
         
-        String rutaCompleta = urlWS + "/print?idServicio=" + servicio + "&nombrePasajero=" +URLEncoder.encode(nombrePasajero, "UTF-8")+"&rutPasajero=" + rutPasajero+"&fecha="+URLEncoder.encode(fecha, "UTF-8");
+        String rutaCompleta = urlWS + "/print?idServicio=" + servicio + "&nombrePasajero=" +URLEncoder.encode(nombrePasajero, "UTF-8")+"&apellidoP="+apellidoP+"&rutPasajero=" + rutPasajero+"&fecha="+URLEncoder.encode(fecha, "UTF-8");
         System.out.println("------------------------");
         System.out.println(rutaCompleta);
         System.out.println("------------------------");
