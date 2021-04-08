@@ -3,7 +3,15 @@ package app;
 import hilo.HiloCambioServicioAutomatico;
 import java.awt.Color;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.TimeZone;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import model.clases.Contrato;
@@ -171,11 +179,21 @@ public class RegistrosServicios extends javax.swing.JFrame {
                 // obtengo la fecha y hora actual
                 String servicio = "";
                 int mes = (int) calendar.get(Calendar.MONTH) + 1;
-                String fecha = String.valueOf(calendar.get(Calendar.YEAR) + "/" + mes + "/" + calendar.get(Calendar.DAY_OF_MONTH));
-                String hora = String.valueOf(calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND));
-
-                System.out.println(fecha);
-                System.out.println(hora);
+                int anio = (int) calendar.get(Calendar.YEAR);
+                int day = (int) calendar.get(Calendar.DAY_OF_MONTH);
+                
+                
+                String fechaActual = String.valueOf(LocalDate.now());
+                String horaactual = String.valueOf(LocalTime.now(ZoneId.of("GMT-4")));
+                String[] partes = horaactual.split("\\.");
+                horaactual = partes[0];
+                
+                System.out.println("----------------");
+                System.out.println(fechaActual);
+                System.out.println(horaactual);
+                System.out.println("----------------");
+                
+      
 
                 try {
 
@@ -201,7 +219,7 @@ public class RegistrosServicios extends javax.swing.JFrame {
                     
                     conn.insertRegistroServicio(pasajero.getId(), contrato.getId(), String.valueOf(hiloCambioSer.getIdServicio()));
 
-                    new ImpresoraWS().printVoucher(servicio, pasajero.getNombre(),pasajero.getApellidoP(), pasajero.getRut(), fecha + " " + hora);
+                    new ImpresoraWS().printVoucher(servicio, pasajero.getNombre(),pasajero.getApellidoP(), pasajero.getRut(), fechaActual + " " + horaactual);
 
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "ERROR DE REGISTRO", "ERROR", JOptionPane.ERROR_MESSAGE);
